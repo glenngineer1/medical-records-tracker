@@ -62,6 +62,18 @@ angular
       )
   })
   .controller('NewVisitCtrl', function ($scope, $http) {
+    $scope.sendNewVisit = () => {
+      const visit = {
+        doctorName: $scope.physicianName,
+        type: $scope.type,
+      }
+
+      $http
+        .post('/api/visits', visit)
+        .then(() => $scope.visits.push(visit))
+        .catch(console.error)
+    }
+
     $http
       .get('/api/title')
       .then(({ data: { title }}) =>

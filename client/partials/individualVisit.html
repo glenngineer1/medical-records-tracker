@@ -3,3 +3,8 @@
 
 <div ng-include="'partials/navbar.html'"></div>
 
+<ul>
+  <li ng-repeat="visit in visits">
+    {{visit.doctor}}: {{visit.type}}
+  </li>
+</ul>

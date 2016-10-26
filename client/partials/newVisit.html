@@ -2,3 +2,44 @@
 <h1>New Visit Page</h1>
 
 <div ng-include="'partials/navbar.html'"></div>
+
+<form ng-submit="sendNewVisit()">
+  Physician: <input type="text" ng-model="physicianName" placeholder="Name of Physician" />
+  <input type="text" ng-model="type" placeholder="Type of Physician" />
+  <hr>
+  Contact Info: <input type="text" ng-model="phone" placeholder="Office Phone Number">
+  <input type="text" ng-model="address" placeholder="Address" />
+  <input type="email" ng-model="email" placeholder="Email" />
+  <hr>
+  BP: <input type="number" ng-model="systolic" placeholder="Systolic">
+  <input type="number" ng-model="diastolic" placeholder="Diastolic">
+  <hr>
+  Personal Stats: <input type="number" ng-model="weight" placeholder="Weight in Pounds">
+  Height: <input type="number" ng-model="foot" placeholder="Foot">
+  <input type="number" ng-model="inches" placeholder="Inches">
+  <hr>
+  <textarea ng-model="reasonForVisit" placeholder="Reason For Visit" cols="100" rows="5"></textarea>
+  <hr>
+  Date of Visit: <input type="date" ng-model="date" placeholder="Date of Visit">
+  <hr>
+  <textarea ng-model="diagnosis" placeholder="Diagnosis" cols="100" rows="3"></textarea>
+  <hr>
+  <textarea ng-model="solution" placeholder="Solution" cols="100" rows="3"></textarea>
+  <hr>
+  <textarea ng-model="followUp" placeholder="Follow Up" cols="100" rows="3"></textarea>
+  <hr>
+  Bloodwork Done: <select ng-model="bloodwork">
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+  </select>
+  <hr>
+  <textarea ng-model="medicationsPrescribed" placeholder="Medications Prescribed" cols="100" rows="3"></textarea>
+  <hr>
+  <textarea ng-model="sideEffects" placeholder="Side Effects" cols="100" rows="3"></textarea>
+  <hr>
+  <textarea ng-model="allergies" placeholder="Allergies to New Meds" cols="100" rows="3"></textarea>
+  <hr>
+  <textarea ng-model="afterCare" placeholder="After Care" cols="100" rows="3"></textarea>
+  <hr>
+  <input type="submit" />
+</form>
