@@ -12,6 +12,26 @@ angular
         controller: 'LoginCtrl',
         templateUrl: 'partials/login.html',
       })
+      .when('/register', {
+        controller: 'RegisterCtrl',
+        templateUrl: 'partials/register.html',
+      })
+      .when('/welcome', {
+        controller: 'WelcomeCtrl',
+        templateUrl: 'partials/welcome.html',
+      })
+      .when('/newvisit', {
+        controller: 'NewVisitCtrl',
+        templateUrl: 'partials/newVisit.html',
+      })
+      .when('/previousvisit', {
+        controller: 'PreviousVisitCtrl',
+        templateUrl: 'partials/previousVisit.html',
+      })
+      .when('/individualvisit', {
+        controller: 'IndividualVisitCtrl',
+        templateUrl: 'partials/individualVisit.html',
+      })
   )
   .controller('SplashCtrl', function ($scope, $http) {
     $http
@@ -20,5 +40,46 @@ angular
         $scope.title = title
       )
   })
-  .controller('LoginCtrl', function ($scope) {})
+  .controller('LoginCtrl', function ($scope, $http) {
+    $http
+      .get('/api/title')
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+  })
+  .controller('RegisterCtrl', function ($scope, $http) {
+    $http
+      .get('/api/title')
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+  })
+  .controller('WelcomeCtrl', function ($scope, $http) {
+    $http
+      .get('/api/title')
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+  })
+  .controller('NewVisitCtrl', function ($scope, $http) {
+    $http
+      .get('/api/title')
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+  })
+  .controller('PreviousVisitCtrl', function ($scope, $http) {
+    $http
+      .get('/api/title')
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+  })
+  .controller('IndividualVisitCtrl', function ($scope, $http) {
+    $http
+      .get('/api/title')
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
+  })
 
