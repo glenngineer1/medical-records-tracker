@@ -77,9 +77,9 @@ angular
   })
   .controller('IndividualVisitCtrl', function ($scope, $http) {
     $http
-      .get('/api/title')
-      .then(({ data: { title }}) =>
-        $scope.title = title
+      .get('/api/visits')
+      .then(({ data: { visits }}) =>
+        $scope.visits = visits
       )
   })
 
