@@ -1,2 +1,55 @@
 <h1>{{title}}</h1>
 <h1>Register Page</h1>
+
+<form ng-submit="sendRegister()">
+  Name:
+  <input type="text" ng-model="first" placeholder="First Name">
+  <input type="text" ng-model="middle" placeholder="Middle Name">
+  <input type="text" ng-model="last" placeholder="Last Name">
+  DOB:
+  <input type="date" ng-model="dob" placeholder="Date of Birth">
+  Gender:  <select ng-model="gender">
+    <option value="female">Female</option>
+    <option value="male">Male</option>
+  </select>
+  <hr>
+  Personal Stats: <input type="number" ng-model="weight" placeholder="Weight in Pounds">
+  Height: <input type="number" ng-model="foot" placeholder="Foot">
+  <input type="number" ng-model="inches" placeholder="Inches">
+  <hr>
+  BP: <input type="number" ng-model="systolic" placeholder="Systolic">
+  <input type="number" ng-model="diastolic" placeholder="Diastolic">
+  <hr>
+  Blood Type: <select ng-model="bloodType">
+    <option value="O+">O+</option>
+    <option value="O">O-</option>
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+  </select>
+  <hr>
+  <textarea ng-model="medicalAllergies" placeholder="Medical Allergies" cols="100" rows="3"></textarea>
+  <hr>
+  <textarea ng-model="currentMedications" placeholder="Current Medications" cols="100" rows="3"></textarea>
+  <hr>  <textarea ng-model="currentIllnesses" placeholder="Current Illnesses" cols="100" rows="3"></textarea>
+  <hr>
+  <textarea ng-model="previousIllnesses" placeholder="Previous Illnesses" cols="100" rows="3"></textarea>
+  <hr>
+  <textarea ng-model="familyHistory" placeholder="Family History" cols="100" rows="3"></textarea>
+  <hr>
+  Registration Date: <input type="date" ng-model="registrationDate">
+  <hr>
+  Pharmacy Info: <input type="text" ng-model="name" placeholder="Name">
+  <input type="text" ng-model="address" placeholder="Address" />
+  <input type="string" ng-model="phone" placeholder="Phone" />
+  <hr>
+  Email: <input type="email" ng-model="email" placeholder="Enter Email Address">
+  Password: <input type="password" ng-model="password" placeholder="Enter Password">
+  <hr>
+  Phone: <input type="phone" ng-model="phone" placeholder="Enter Phone Number">
+  <hr>
+  <input type="submit" />
+</form>

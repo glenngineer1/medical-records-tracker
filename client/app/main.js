@@ -48,6 +48,19 @@ angular
       )
   })
   .controller('RegisterCtrl', function ($scope, $http) {
+    $scope.sendRegister = () => {
+      const register = {
+        first: $scope.first,
+        middle: $scope.middle,
+        last: $scope.last,
+      }
+
+      $http
+        .post('/api/registers', register)
+        .then(() => $scope.registers.push(register))
+        .catch(console.error)
+    }
+
     $http
       .get('/api/title')
       .then(({ data: { title }}) =>
@@ -64,7 +77,7 @@ angular
   .controller('NewVisitCtrl', function ($scope, $http) {
     $scope.sendNewVisit = () => {
       const visit = {
-        doctorName: $scope.physicianName,
+        physicianName: $scope.physicianName,
         type: $scope.type,
       }
 
