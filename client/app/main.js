@@ -5,3 +5,4 @@ angular
   .controller('main', function ($scope) {
     $scope.title = 'Medical Records Tracker'
   })
+
