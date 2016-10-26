@@ -16,6 +16,26 @@ app.get('/api/title', (req, res) =>
   res.json({ title: 'Medical Records Tracker' })
 )
 
+const Register = mongoose.model('register', {
+  first: String,
+  middle: String,
+  last: String,
+})
+
+app.get('/api/registers', (req, res, err) =>
+  Register
+    .find()
+    .then(registers => res.json({ registers }))
+    .catch(err)
+)
+
+app.post('/api/visits', (req, res, err) =>
+  Register
+    .create(req.body)
+    .then(register => res.json(register))
+    .catch(err)
+)
+
 const Visit = mongoose.model('visit', {
   physicianName: String,
   type: String,
