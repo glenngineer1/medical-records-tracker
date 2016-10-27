@@ -67,6 +67,30 @@ angular
           systolic: $scope.systolic,
           diastolic: $scope.diastolic,
         },
+        bloodType: $scope.bloodType,
+        medicalAllergies: $scope.medicalAllergies,
+        currentMedications: $scope.currentMedications,
+        currentIllnesses: $scope.currentIllnesses,
+        previousIllnesses: $scope.previousIllnesses,
+        familyHistory: $scope.familyHistory,
+        registrationDate: $scope.registrationDate,
+        pharmacy: {
+          name: $scope.name,
+          address: $scope.address,
+          pharmacyPhone: $scope.pharmacyPhone
+        },
+        // email: {
+        //   type: $scope.type,
+        //   lowercase: $scope.lowercase,
+        //   required: $scope.required,
+        //   match: $scope.match,
+        //   index: $scope.index,
+        // },
+        // password: {
+        //   type: $scope.type,
+        //   required: $scope.required,
+        // },
+        // phone: $scope.phone
       }
 
       $http

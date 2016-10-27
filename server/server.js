@@ -16,6 +16,8 @@ app.get('/api/title', (req, res) =>
   res.json({ title: 'Medical Records Tracker' })
 )
 
+const HTML5_EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
 const Register = mongoose.model('register', {
   name: {
     first: String,
@@ -33,6 +35,30 @@ const Register = mongoose.model('register', {
     systolic: Number,
     diastolic: Number,
   },
+  bloodType: String,
+  medicalAllergies: Array,
+  currentMedications: Array,
+  currentIllnesses: Array,
+  previousIllnesses: Array,
+  familyHistory: Array,
+  registrationDate: Date,
+  pharmacy: {
+    name: String,
+    address: String,
+    pharmacyPhone: String
+  },
+  // email: {
+  //   type: String,
+  //   lowercase: true,
+  //   required: true,
+  //   match: [HTML5_EMAIL_REGEX, 'Please enter a valid email address'],
+  //   index: { unique: true }
+  // },
+  // password: {
+  //   type: String,
+  //   required: true,
+  // },
+  // phone: String
 })
 
 app.get('/api/registers', (req, res, err) =>
