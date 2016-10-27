@@ -48,11 +48,25 @@ angular
       )
   })
   .controller('RegisterCtrl', function ($scope, $http) {
+    $scope.registers = []
     $scope.sendRegister = () => {
       const register = {
-        first: $scope.first,
-        middle: $scope.middle,
-        last: $scope.last,
+        name: {
+          first: $scope.first,
+          middle: $scope.middle,
+          last: $scope.last,
+        },
+        dob: $scope.dob,
+        gender: $scope.gender,
+        weight: $scope.weight,
+        height: {
+          foot: $scope.foot,
+          inches: $scope.inches,
+        },
+        bp: {
+          systolic: $scope.systolic,
+          diastolic: $scope.diastolic,
+        },
       }
 
       $http

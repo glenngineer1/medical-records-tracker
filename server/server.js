@@ -17,9 +17,22 @@ app.get('/api/title', (req, res) =>
 )
 
 const Register = mongoose.model('register', {
-  first: String,
-  middle: String,
-  last: String,
+  name: {
+    first: String,
+    middle: String,
+    last: String,
+  },
+  dob: Date,
+  gender: String,
+  weight: Number,
+  height: {
+    foot: Number,
+    inches: Number,
+  },
+  bp: {
+    systolic: Number,
+    diastolic: Number,
+  },
 })
 
 app.get('/api/registers', (req, res, err) =>
@@ -29,7 +42,7 @@ app.get('/api/registers', (req, res, err) =>
     .catch(err)
 )
 
-app.post('/api/visits', (req, res, err) =>
+app.post('/api/registers', (req, res, err) =>
   Register
     .create(req.body)
     .then(register => res.json(register))
