@@ -48,6 +48,7 @@ angular
       )
   })
   .controller('RegisterCtrl', function ($scope, $http) {
+    $scope.registers = []
     $scope.sendRegister = () => {
       const register = {
         first: $scope.first,

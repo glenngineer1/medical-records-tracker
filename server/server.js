@@ -29,7 +29,7 @@ app.get('/api/registers', (req, res, err) =>
     .catch(err)
 )
 
-app.post('/api/visits', (req, res, err) =>
+app.post('/api/registers', (req, res, err) =>
   Register
     .create(req.body)
     .then(register => res.json(register))
