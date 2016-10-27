@@ -51,9 +51,37 @@ angular
     $scope.registers = []
     $scope.sendRegister = () => {
       const register = {
-        first: $scope.first,
-        middle: $scope.middle,
-        last: $scope.last,
+        name: {
+          first: $scope.first,
+          middle: $scope.middle,
+          last: $scope.last,
+        },
+        dob: $scope.dob,
+        gender: $scope.gender,
+        weight: $scope.weight,
+        height: {
+          foot: $scope.foot,
+          inches: $scope.inches,
+        },
+        bp: {
+          systolic: $scope.systolic,
+          diastolic: $scope.diastolic,
+        },
+        bloodType: $scope.bloodType,
+        medicalAllergies: $scope.medicalAllergies,
+        currentMedications: $scope.currentMedications,
+        currentIllnesses: $scope.currentIllnesses,
+        previousIllnesses: $scope.previousIllnesses,
+        familyHistory: $scope.familyHistory,
+        registrationDate: $scope.registrationDate,
+        pharmacy: {
+          name: $scope.name,
+          address: $scope.address,
+          pharmacyPhone: $scope.pharmacyPhone,
+        },
+        email: $scope.email,
+        password: $scope.password,
+        phone: $scope.phone,
       }
 
       $http
@@ -76,10 +104,35 @@ angular
       )
   })
   .controller('NewVisitCtrl', function ($scope, $http) {
+    $scope.visits = []
     $scope.sendNewVisit = () => {
       const visit = {
         physicianName: $scope.physicianName,
         type: $scope.type,
+        contactInfo: {
+          phone: $scope.phone,
+          address: $scope.address,
+          email: $scope.email,
+        },
+        weight: $scope.weight,
+        height: {
+          foot: $scope.foot,
+          inches: $scope.inches,
+        },
+        bp: {
+          systolic: $scope.systolic,
+          diastolic: $scope.diastolic,
+        },
+        reasonForVisit: $scope.reasonForVisit,
+        date: $scope.date,
+        diagnosis: $scope.diagnosis,
+        solution: $scope.solution,
+        followUp: $scope.followUp,
+        bloodwork: $scope.bloodwork,
+        medicationsPrescribed: $scope.medicationsPrescribed,
+        sideEffects: $scope.sideEffects,
+        allergies: $scope.allergies,
+        afterCare: $scope.afterCare,
       }
 
       $http

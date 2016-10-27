@@ -16,10 +16,49 @@ app.get('/api/title', (req, res) =>
   res.json({ title: 'Medical Records Tracker' })
 )
 
+const HTML5_EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
 const Register = mongoose.model('register', {
-  first: String,
-  middle: String,
-  last: String,
+  name: {
+    first: String,
+    middle: String,
+    last: String,
+  },
+  dob: Date,
+  gender: String,
+  weight: Number,
+  height: {
+    foot: Number,
+    inches: Number,
+  },
+  bp: {
+    systolic: Number,
+    diastolic: Number,
+  },
+  bloodType: String,
+  medicalAllergies: Array,
+  currentMedications: Array,
+  currentIllnesses: Array,
+  previousIllnesses: Array,
+  familyHistory: Array,
+  registrationDate: Date,
+  pharmacy: {
+    name: String,
+    address: String,
+    pharmacyPhone: String
+  },
+  email: {
+    type: String,
+    lowercase: true,
+    required: true,
+    match: [HTML5_EMAIL_REGEX, 'Please enter a valid email address'],
+    index: { unique: true }
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  phone: String
 })
 
 app.get('/api/registers', (req, res, err) =>
@@ -39,6 +78,30 @@ app.post('/api/registers', (req, res, err) =>
 const Visit = mongoose.model('visit', {
   physicianName: String,
   type: String,
+  contactInfo: {
+    phone: String,
+    address: String,
+    email: String
+  },
+  weight: Number,
+  height: {
+    foot: Number,
+    inches: Number,
+  },
+  bp: {
+    systolic: Number,
+    diastolic: Number,
+  },
+  reasonForVisit: String,
+  date: Date,
+  diagnosis: String,
+  solution: String,
+  followUp: String,
+  bloodwork: String,
+  medicationsPrescribed: Array,
+  sideEffects: Array,
+  allergies: Array,
+  afterCare: String,
 })
 
 app.get('/api/visits', (req, res, err) =>
