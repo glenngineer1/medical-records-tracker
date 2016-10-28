@@ -147,14 +147,24 @@ angular
         $scope.title = title
       )
   })
-  .controller('PreviousVisitCtrl', function ($scope, $http) {
+  .controller('PreviousVisitCtrl', function ($scope, $http, $routeParams) {
     $http
       .get('/api/title')
       .then(({ data: { title }}) =>
         $scope.title = title
       )
+    $http
+      .get('/api/visits')
+      .then(({ data: { visits }}) =>
+        $scope.visits = visits
+      )
   })
-  .controller('IndividualVisitCtrl', function ($scope, $http) {
+  .controller('IndividualVisitCtrl', function ($scope, $http, $routeParams) {
+    $http
+      .get('/api/title')
+      .then(({ data: { title }}) =>
+        $scope.title = title
+      )
     $http
       .get('/api/visits')
       .then(({ data: { visits }}) =>
