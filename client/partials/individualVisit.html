@@ -3,8 +3,8 @@
 
 <div ng-include="'partials/navBar.html'"></div>
 
-<form ng-submit="sendNewVisit()">
-  Physician: <input type="text" ng-model="physicianName" placeholder="Name of Physician" />
+<form>
+  Physician: <input type="text" ng-model="physicianName" ng-init="visits.physicianName" placeholder="Name of Physician" />
   <input type="text" ng-model="type" placeholder="Type of Physician" />
   <hr>
   Contact Info: <input type="text" ng-model="phone" placeholder="Office Phone Number">

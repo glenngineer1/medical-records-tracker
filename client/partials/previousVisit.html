@@ -3,20 +3,8 @@
 
 <div ng-include="'partials/navBar.html'"></div>
 
-<div class="physician">
-  <div>
-    Name of Physician
-  </div>
-</div>
-
-<div class="visit">
-  <div>
-    Date of Visit
-  </div>
-</div>
-
-<!-- <ul>
+<ul>
   <li ng-repeat="visit in visits">
-    {{visit.doctor}}: {{visit.type}}
+    <a>{{visit.physicianName}}: {{visit.type}}</a>
   </li>
-</ul> -->
+</ul>
