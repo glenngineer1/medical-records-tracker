@@ -1,6 +1,8 @@
 <h1>{{title}}</h1>
 <h1>Register Page</h1>
 
+<div ng-include="'partials/navBar.html'"></div>
+
 <form ng-submit="sendRegister()">
   Name:
   <input type="text" ng-model="first" placeholder="First Name">
