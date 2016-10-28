@@ -16,10 +16,6 @@ angular
         controller: 'RegisterCtrl',
         templateUrl: 'partials/register.html',
       })
-      .when('/welcome', {
-        controller: 'WelcomeCtrl',
-        templateUrl: 'partials/welcome.html',
-      })
       .when('/newvisit', {
         controller: 'NewVisitCtrl',
         templateUrl: 'partials/newVisit.html',
@@ -90,13 +86,6 @@ angular
         .catch(console.error)
     }
 
-    $http
-      .get('/api/title')
-      .then(({ data: { title }}) =>
-        $scope.title = title
-      )
-  })
-  .controller('WelcomeCtrl', function ($scope, $http) {
     $http
       .get('/api/title')
       .then(({ data: { title }}) =>
