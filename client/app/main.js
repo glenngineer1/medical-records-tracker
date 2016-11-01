@@ -36,15 +36,35 @@ angular
         $scope.title = title
       )
   })
-  .controller('LoginCtrl', function ($scope, $http) {
+  .controller('LoginCtrl', function ($scope, $http, $location) {
+
+    $scope.loginUser = () => {
+      const userLogin = {
+        email: $scope.email,
+        password: $scope.password
+      }
+
+    $http
+      .post('/api/login', userLogin)
+      .then((response) => {
+        if (response.data.register) {
+          $location.path('#/newVisit')
+        } else {
+          $scope.statusMessage = response.data.message
+        }
+      })
+      .catch(console.error)
+    }
+
     $http
       .get('/api/title')
       .then(({ data: { title }}) =>
         $scope.title = title
       )
   })
-  .controller('RegisterCtrl', function ($scope, $http) {
+  .controller('RegisterCtrl', function ($scope, $http, $location) {
     $scope.registers = []
+
     $scope.sendRegister = () => {
       const register = {
         name: {

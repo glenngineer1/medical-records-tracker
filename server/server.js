@@ -68,12 +68,14 @@ app.get('/api/registers', (req, res, err) =>
     .catch(err)
 )
 
-app.post('/api/registers', (req, res, err) =>
+app.post('/api/registers', (req, res, err) => {
+  const newRegisterObj = req.body
   Register
-    .create(req.body)
-    .then(register => res.json(register))
+    .create(newRegisterObj)
+    .then(response => {res.json(response)
+    })
     .catch(err)
-)
+})
 
 const Visit = mongoose.model('visit', {
   physicianName: String,
@@ -117,6 +119,20 @@ app.post('/api/visits', (req, res, err) =>
     .then(visit => res.json(visit))
     .catch(err)
 )
+
+app.post('/api/login', (req, res, err) => {
+  const loginObj = req.body
+  Register
+    .findOne({ email: loginObj.email })
+    .then(response => {
+      if (response.password === loginObj.password) {
+        res.status(201).json({ user: response, message: "Successful Login!" })
+      } else {
+        res.json({message: "Email and password don't match"})
+      }
+    })
+    .catch(err)
+})
 
 mongoose.Promise = Promise
 mongoose.connect(MONGODB_URL, () =>
