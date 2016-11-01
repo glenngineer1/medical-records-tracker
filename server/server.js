@@ -105,6 +105,7 @@ const Visit = mongoose.model('visit', {
   sideEffects: Array,
   allergies: Array,
   afterCare: String,
+  userID: String,
 })
 
 app.get('/api/visits', (req, res, err) =>
@@ -118,14 +119,21 @@ app.post('/api/visits', (req, res, err) => {
   const newVisitObj = req.body
   Visit
     .create(newVisitObj)
-    .then(response => {res.json(response)
+    .then(response => {
+      console.log('NVO', newVisitObj)
+      console.log('response', response)
+      Register.findOneAndUpdate({ email: newVisitObj.userID }, { $push: {"visits": response}})
+      .then((data) => {
+        console.log('data', data)
+      })
+      .catch(err)
+      // res.json(response)
     })
     .catch(err)
 })
 
 app.post('/api/login', (req, res, err) => {
   const loginObj = req.body
-  console.log(req.body)
   Register
     .findOne({ email: loginObj.email })
     .then(response => {
@@ -137,6 +145,21 @@ app.post('/api/login', (req, res, err) => {
     })
     .catch(err)
 })
+
+app.post('/api/getvisits', (req, res, err) => {
+  Visit
+    .find({ userID: req.body.userID })
+    .then(response => {
+      res.json({ visits: response })
+    })
+})
+
+app.use('/api', (req, res) =>
+  res.status(404).send({ code: 404, status: "Not Found" })
+)
+app.use((err, req, res, next) =>
+  res.status(500).send({ code: 500, status: "Internal Server Error", detail: err.stack})
+)
 
 mongoose.Promise = Promise
 mongoose.connect(MONGODB_URL, () =>
