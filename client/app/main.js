@@ -102,7 +102,12 @@ angular
 
       $http
         .post('/api/registers', register)
-        .then(() => $scope.registers.push(register))
+        .then((register) => {
+          if (register) {
+            $scope.registers.push(register)
+            $location.path('/login')
+          }
+        })
         .catch(console.error)
     }
 
