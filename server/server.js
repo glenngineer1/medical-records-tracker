@@ -146,6 +146,14 @@ app.post('/api/login', (req, res, err) => {
     .catch(err)
 })
 
+app.post('/api/getvisits', (req, res, err) => {
+  Visit
+    .find({ userID: req.body.userID })
+    .then(response => {
+      res.json({ visits: response })
+    })
+})
+
 app.use('/api', (req, res) =>
   res.status(404).send({ code: 404, status: "Not Found" })
 )

@@ -171,17 +171,23 @@ angular
         console.log($rootScope)
       })
   })
-  .controller('PreviousVisitCtrl', function ($scope, $http, $routeParams) {
+  .controller('PreviousVisitCtrl', function ($scope, $http, $routeParams, $rootScope) {
     $http
       .get('/api/title')
       .then(({ data: { title }}) =>
         $scope.title = title
       )
+    // $http
+    //   .get('/api/visits')
+    //   .then(({ data: { visits }}) =>
+    //     $scope.visits = visits
+    //   )
     $http
-      .get('/api/visits')
-      .then(({ data: { visits }}) =>
-        $scope.visits = visits
-      )
+      .post('/api/getvisits', { userID: $rootScope.userID })
+      .then(response => {
+        $scope.visits = response.data.visits
+        console.log('response', response)
+      })
   })
   .controller('IndividualVisitCtrl', function ($scope, $http, $routeParams) {
     $http
