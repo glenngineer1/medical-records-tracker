@@ -36,7 +36,7 @@ angular
         $scope.title = title
       )
   })
-  .controller('LoginCtrl', function ($scope, $http, $location) {
+  .controller('LoginCtrl', function ($scope, $http, $location, $rootScope) {
 
     $scope.loginUser = () => {
       const userLogin = {
@@ -47,7 +47,9 @@ angular
     $http
       .post('/api/login', userLogin)
       .then((response) => {
-        if (response.data.register) {
+        console.log('rdr', response.data.user);
+        if (response.data.user) {
+          $rootScope.userID = response.data.user.email
           $location.path('/newvisit')
         } else {
           $scope.statusMessage = response.data.message
@@ -117,7 +119,7 @@ angular
         $scope.title = title
       )
   })
-  .controller('NewVisitCtrl', function ($scope, $http) {
+  .controller('NewVisitCtrl', function ($scope, $http, $rootScope) {
     $scope.visits = []
     $scope.sendNewVisit = () => {
       const visit = {
@@ -160,6 +162,13 @@ angular
       .then(({ data: { title }}) =>
         $scope.title = title
       )
+
+    $http
+      .get('/api/registers')
+      .then(({ data: { registers }}) => {
+        $scope.registers = $rootScope.userID
+        console.log($rootScope)
+      })
   })
   .controller('PreviousVisitCtrl', function ($scope, $http, $routeParams) {
     $http

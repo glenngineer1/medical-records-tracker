@@ -125,7 +125,6 @@ app.post('/api/visits', (req, res, err) => {
 
 app.post('/api/login', (req, res, err) => {
   const loginObj = req.body
-  console.log(req.body)
   Register
     .findOne({ email: loginObj.email })
     .then(response => {
@@ -137,6 +136,13 @@ app.post('/api/login', (req, res, err) => {
     })
     .catch(err)
 })
+
+app.use('/api', (req, res) =>
+  res.status(404).send({ code: 404, status: "Not Found" })
+)
+app.use((err, req, res, next) =>
+  res.status(500).send({ code: 500, status: "Internal Server Error", detail: err.stack})
+)
 
 mongoose.Promise = Promise
 mongoose.connect(MONGODB_URL, () =>
