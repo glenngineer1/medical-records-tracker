@@ -149,6 +149,7 @@ angular
         sideEffects: $scope.sideEffects,
         allergies: $scope.allergies,
         afterCare: $scope.afterCare,
+        userID: $rootScope.userID,
       }
 
       $http

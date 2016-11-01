@@ -105,6 +105,7 @@ const Visit = mongoose.model('visit', {
   sideEffects: Array,
   allergies: Array,
   afterCare: String,
+  userID: String,
 })
 
 app.get('/api/visits', (req, res, err) =>
@@ -118,7 +119,15 @@ app.post('/api/visits', (req, res, err) => {
   const newVisitObj = req.body
   Visit
     .create(newVisitObj)
-    .then(response => {res.json(response)
+    .then(response => {
+      console.log('NVO', newVisitObj)
+      console.log('response', response)
+      Register.findOneAndUpdate({ email: newVisitObj.userID }, { $push: {"visits": response}})
+      .then((data) => {
+        console.log('data', data)
+      })
+      .catch(err)
+      // res.json(response)
     })
     .catch(err)
 })
