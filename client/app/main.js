@@ -188,8 +188,14 @@ angular
         $scope.visits = response.data.visits
         console.log('response', response)
       })
+    $http
+      .get('/api/registers')
+      .then(({ data: { registers }}) => {
+        $scope.registers = $rootScope.userID
+        console.log($rootScope)
+      })
   })
-  .controller('IndividualVisitCtrl', function ($scope, $http, $routeParams) {
+  .controller('IndividualVisitCtrl', function ($scope, $http, $routeParams, $rootScope) {
     $http
       .get('/api/title')
       .then(({ data: { title }}) =>
@@ -200,5 +206,11 @@ angular
       .then(({ data: { visits }}) =>
         $scope.visits = visits
       )
+    $http
+      .get('/api/registers')
+      .then(({ data: { registers }}) => {
+        $scope.registers = $rootScope.userID
+        console.log($rootScope)
+      })
   })
 
