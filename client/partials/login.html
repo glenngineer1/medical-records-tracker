@@ -4,8 +4,8 @@
 <div ng-include="'partials/navBar.html'"></div>
 
 <form ng-submit="loginUser()">
-Email: <input type="email" name="">
-Password: <input type="password" name="">
+Email: <input type="email" name="email" ng-model="email">
+Password: <input type="password" name="password" ng-model="password">
 <input type="submit" value="Login" />
 </form>
 

@@ -48,7 +48,7 @@ angular
       .post('/api/login', userLogin)
       .then((response) => {
         if (response.data.register) {
-          $location.path('#/newVisit')
+          $location.path('/newvisit')
         } else {
           $scope.statusMessage = response.data.message
         }

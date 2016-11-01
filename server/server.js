@@ -58,7 +58,8 @@ const Register = mongoose.model('register', {
     type: String,
     required: true,
   },
-  phone: String
+  phone: String,
+  visits: [mongoose.Schema.Types.ObjectId]
 })
 
 app.get('/api/registers', (req, res, err) =>
@@ -113,15 +114,18 @@ app.get('/api/visits', (req, res, err) =>
     .catch(err)
 )
 
-app.post('/api/visits', (req, res, err) =>
+app.post('/api/visits', (req, res, err) => {
+  const newVisitObj = req.body
   Visit
-    .create(req.body)
-    .then(visit => res.json(visit))
+    .create(newVisitObj)
+    .then(response => {res.json(response)
+    })
     .catch(err)
-)
+})
 
 app.post('/api/login', (req, res, err) => {
   const loginObj = req.body
+  console.log(req.body)
   Register
     .findOne({ email: loginObj.email })
     .then(response => {
