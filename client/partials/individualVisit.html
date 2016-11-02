@@ -6,8 +6,8 @@
 <div ng-include="'partials/navBar.html'"></div>
 
 <form>
-  Physician: <input type="text" ng-model="physicianName" ng-init="visits.physicianName" placeholder="Name of Physician" />
-  <input type="text" ng-model="type" placeholder="Type of Physician" />
+  Physician: <input type="text" ng-model="physicianName" ng-value="visit.physicianName" placeholder="Name of Physician" />
+  <input type="text" ng-model="type" ng-value="visit.type" placeholder="Type of Physician" />
   <hr>
   Contact Info: <input type="text" ng-model="phone" placeholder="Office Phone Number">
   <input type="text" ng-model="address" placeholder="Address" />
@@ -17,12 +17,12 @@
   Height: <input type="number" ng-model="foot" placeholder="Foot">
   <input type="number" ng-model="inches" placeholder="Inches">
   <hr>
-  BP: <input type="number" ng-model="systolic" placeholder="Systolic">
-  <input type="number" ng-model="diastolic" placeholder="Diastolic">
+  BP: <input type="number" ng-value="visit.bp.systolic" ng-model="systolic" placeholder="Systolic">
+  <input type="number" ng-value="visit.bp.diastolic" ng-model="diastolic" placeholder="Diastolic">
   <hr>
   <textarea ng-model="reasonForVisit" placeholder="Reason For Visit" cols="100" rows="5"></textarea>
   <hr>
-  Date of Visit: <input type="date" ng-model="date" placeholder="Date of Visit">
+  Date of Visit: <input type="text" ng-value="visit.date" ng-model="date" placeholder="Date of Visit">
   <hr>
   <textarea ng-model="diagnosis" placeholder="Diagnosis" cols="100" rows="3"></textarea>
   <hr>
@@ -31,8 +31,8 @@
   <textarea ng-model="followUp" placeholder="Follow Up" cols="100" rows="3"></textarea>
   <hr>
   Bloodwork Done: <select ng-model="bloodwork">
-    <option value="Yes">Yes</option>
-    <option value="No">No</option>
+    <option value="Yes" ng-selected="visit.bloodwork === 'Yes'">Yes</option>
+    <option value="No" ng-selected="visit.bloodwork === 'No'">No</option>
   </select>
   <hr>
   <textarea ng-model="medicationsPrescribed" placeholder="Medications Prescribed" cols="100" rows="3"></textarea>
