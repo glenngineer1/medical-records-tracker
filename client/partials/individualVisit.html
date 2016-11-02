@@ -9,41 +9,40 @@
   Physician: <input type="text" ng-model="physicianName" ng-value="visit.physicianName" placeholder="Name of Physician" />
   <input type="text" ng-model="type" ng-value="visit.type" placeholder="Type of Physician" />
   <hr>
-  Contact Info: <input type="text" ng-model="phone" placeholder="Office Phone Number">
-  <input type="text" ng-model="address" placeholder="Address" />
-  <input type="email" ng-model="email" placeholder="Email" />
+  Contact Info: <input type="text" ng-model="phone" ng-value="visit.contactInfo.phone" placeholder="Office Phone Number">
+  <input type="text" ng-model="address" ng-value="visit.contactInfo.address" placeholder="Address" />
+  <input type="email" ng-model="email" ng-value="visit.contactInfo.email" placeholder="Email" />
   <hr>
-  Personal Stats: <input type="number" ng-model="weight" placeholder="Weight in Pounds">
-  Height: <input type="number" ng-model="foot" placeholder="Foot">
-  <input type="number" ng-model="inches" placeholder="Inches">
+  Personal Stats: <input type="number" ng-model="weight" ng-value="visit.weight" placeholder="Weight in Pounds">
+  Height: <input type="number" ng-model="foot" ng-value="visit.height.foot" placeholder="Foot">
+  <input type="number" ng-model="inches" ng-value="visit.height.inches" placeholder="Inches">
   <hr>
   BP: <input type="number" ng-value="visit.bp.systolic" ng-model="systolic" placeholder="Systolic">
   <input type="number" ng-value="visit.bp.diastolic" ng-model="diastolic" placeholder="Diastolic">
   <hr>
-  <textarea ng-model="reasonForVisit" placeholder="Reason For Visit" cols="100" rows="5"></textarea>
+  <textarea ng-model="visit.reasonForVisit" placeholder="Reason For Visit" cols="100" rows="5"></textarea>
   <hr>
-  Date of Visit: <input type="text" ng-value="visit.date" ng-model="date" placeholder="Date of Visit">
+  Date of Visit: <input type="text" ng-model="date" ng-value="visit.date" placeholder="Date of Visit">
   <hr>
-  <textarea ng-model="diagnosis" placeholder="Diagnosis" cols="100" rows="3"></textarea>
+  <textarea ng-model="visit.diagnosis" placeholder="Diagnosis" cols="100" rows="3"></textarea>
   <hr>
-  <textarea ng-model="solution" placeholder="Solution" cols="100" rows="3"></textarea>
+  <textarea ng-model="visit.solution" placeholder="Solution" cols="100" rows="3"></textarea>
   <hr>
-  <textarea ng-model="followUp" placeholder="Follow Up" cols="100" rows="3"></textarea>
+  <textarea ng-model="visit.followUp" placeholder="Follow Up" cols="100" rows="3"></textarea>
   <hr>
   Bloodwork Done: <select ng-model="bloodwork">
     <option value="Yes" ng-selected="visit.bloodwork === 'Yes'">Yes</option>
     <option value="No" ng-selected="visit.bloodwork === 'No'">No</option>
   </select>
   <hr>
-  <textarea ng-model="medicationsPrescribed" placeholder="Medications Prescribed" cols="100" rows="3"></textarea>
+  <textarea ng-model="visit.medicationsPrescribed" placeholder="Medications Prescribed" cols="100" rows="3"></textarea>
   <hr>
-  <textarea ng-model="sideEffects" placeholder="Side Effects" cols="100" rows="3"></textarea>
+  <textarea ng-model="visit.sideEffects" placeholder="Side Effects" cols="100" rows="3"></textarea>
   <hr>
-  <textarea ng-model="allergies" placeholder="Allergies to New Meds" cols="100" rows="3"></textarea>
+  <textarea ng-model="visit.allergies" placeholder="Allergies to New Meds" cols="100" rows="3"></textarea>
   <hr>
-  <textarea ng-model="afterCare" placeholder="After Care" cols="100" rows="3"></textarea>
+  <textarea ng-model="visit.afterCare" placeholder="After Care" cols="100" rows="3"></textarea>
   <hr>
   <input type="submit" value="Modify" ng-click="modify()" />
-  <input type="submit" value="Delete" />
-  <input type="submit" value="Cancel" />
+  <input type="submit" value="Delete" ng-click="delete()" />
 </form>

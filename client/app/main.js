@@ -36,6 +36,14 @@ angular
         $scope.title = title
       )
   })
+  .controller('navController', function ($scope, $rootScope, $location) {
+    $scope.user = $rootScope.userID
+    $scope.logout = () => {
+      $rootScope.userID = null
+      $location.path('/')
+    }
+  })
+
   .controller('LoginCtrl', function ($scope, $http, $location, $rootScope) {
 
     $scope.loginUser = () => {
@@ -47,7 +55,6 @@ angular
     $http
       .post('/api/login', userLogin)
       .then((response) => {
-        console.log('rdr', response.data.user);
         if (response.data.user) {
           $rootScope.userID = response.data.user.email
           $location.path('/newvisit')
@@ -168,7 +175,6 @@ angular
       .get('/api/registers')
       .then(({ data: { registers }}) => {
         $scope.registers = $rootScope.userID
-        console.log($rootScope)
       })
   })
   .controller('PreviousVisitCtrl', function ($scope, $http, $routeParams, $rootScope) {
@@ -177,73 +183,80 @@ angular
       .then(({ data: { title }}) =>
         $scope.title = title
       )
-    // $http
-    //   .get('/api/visits')
-    //   .then(({ data: { visits }}) =>
-    //     $scope.visits = visits
-    //   )
     $http
       .post('/api/getvisits', { userID: $rootScope.userID })
       .then(response => {
         $scope.visits = response.data.visits
-        console.log('response', response)
       })
     $http
       .get('/api/registers')
       .then(({ data: { registers }}) => {
         $scope.registers = $rootScope.userID
-        console.log($rootScope)
       })
   })
-  .controller('IndividualVisitCtrl', function ($scope, $http, $routeParams, $rootScope) {
+  .controller('IndividualVisitCtrl', function ($scope, $http, $routeParams, $rootScope, $location) {
     $scope.registers = $rootScope.userID
     $http
       .get('/api/title')
       .then(({ data: { title }}) => {
         $scope.title = title
-        console.log('RP', $routeParams)
       })
     $http
       .post('/api/getindividualvisit', { id: $routeParams.id })
       .then(response => {
         $scope.visit = response.data.visit
-        console.log('SV', $scope.visit)
       })
     $scope.modify = () => {
-      const visit = {
+      console.log('S.P', $scope.phone)
+      let visit = {
         physicianName: $scope.physicianName,
         type: $scope.type,
         contactInfo: {
-          phone: $scope.phone,
-          address: $scope.address,
-          email: $scope.email,
+          phone: $scope.phone || $scope.visit.contactInfo.phone,
+          address: $scope.address || $scope.visit.contactInfo.address,
+          email: $scope.email || $scope.visit.contactInfo.email,
         },
         weight: $scope.weight,
         height: {
-          foot: $scope.foot,
-          inches: $scope.inches,
+          foot: $scope.foot || $scope.visit.height.foot,
+          inches: $scope.inches || $scope.visit.height.inches,
         },
         bp: {
-          systolic: $scope.systolic,
-          diastolic: $scope.diastolic,
+          systolic: $scope.systolic || $scope.visit.bp.systolic,
+          diastolic: $scope.diastolic || $scope.visit.bp.diastolic,
         },
-        reasonForVisit: $scope.reasonForVisit,
+        reasonForVisit: $scope.visit.reasonForVisit,
         date: $scope.date,
-        diagnosis: $scope.diagnosis,
-        solution: $scope.solution,
-        followUp: $scope.followUp,
+        diagnosis: $scope.visit.diagnosis,
+        solution: $scope.visit.solution,
+        followUp: $scope.visit.followUp,
         bloodwork: $scope.bloodwork,
-        medicationsPrescribed: $scope.medicationsPrescribed,
-        sideEffects: $scope.sideEffects,
-        allergies: $scope.allergies,
-        afterCare: $scope.afterCare,
+        medicationsPrescribed: $scope.visit.medicationsPrescribed,
+        sideEffects: $scope.visit.sideEffects,
+        allergies: $scope.visit.allergies,
+        afterCare: $scope.visit.afterCare,
         userID: $rootScope.userID,
         id: $routeParams.id,
       }
+      console.log('visit', visit)
       $http
         .post('/api/updatevisit', visit)
-        .then((response) => console.log('Updatevisit', response))
+        .then((response) => {
+          if (response.data.updatedIndividualVisit) {
+            $location.path('/previousvisit')
+          }
+        })
         .catch(console.error)
+    }
+    $scope.delete = () => {
+      $http
+        .post('/api/deletevisit', { id: $routeParams.id })
+        .then(response => {
+          if (response.data.deleted) {
+            $location.path('/previousvisit')
+          }
+      })
+      .catch(console.error)
     }
   })
 

@@ -167,7 +167,6 @@ app.post('/api/getindividualvisit', (req, res, err) => {
 // Update Individual Visit
 app.post('/api/updatevisit', (req, res, err) => {
   const newVisitObj = req.body
-  console.log('NVO', newVisitObj)
   Visit
     .findOneAndUpdate(
       { _id: req.body.id },
@@ -175,8 +174,17 @@ app.post('/api/updatevisit', (req, res, err) => {
       { new: true }
       )
     .then(response => {
-      console.log('IV Response', response)
-      res.json({ code: 404 })
+      res.json({ updatedIndividualVisit: response })
+    })
+    .catch(err)
+})
+
+// Delete Individual Visit
+app.post('/api/deletevisit', (req, res, err) => {
+  Visit
+    .remove({ _id: req.body.id })
+    .then(response => {
+      res.json({ deleted: true })
     })
     .catch(err)
 })
