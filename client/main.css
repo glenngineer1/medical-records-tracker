@@ -1,0 +1,20 @@
+.doctor {
+  display: inline-block;
+  list-style-type: none;
+}
+
+.dayOfVisit {
+  display: inline-block;
+  list-style-type: none;
+  margin-left: 60px;
+}
+
+.doctorLabel {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.dayOfVisitLabel {
+  display: inline-block;
+  margin-left: 185px;
+}
