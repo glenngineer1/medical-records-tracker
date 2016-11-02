@@ -164,6 +164,23 @@ app.post('/api/getindividualvisit', (req, res, err) => {
     .catch(err)
 })
 
+// Update Individual Visit
+app.post('/api/updatevisit', (req, res, err) => {
+  const newVisitObj = req.body
+  console.log('NVO', newVisitObj)
+  Visit
+    .findOneAndUpdate(
+      { _id: req.body.id },
+      newVisitObj,
+      { new: true }
+      )
+    .then(response => {
+      console.log('IV Response', response)
+      res.json({ code: 404 })
+    })
+    .catch(err)
+})
+
 app.use('/api', (req, res) =>
   res.status(404).send({ code: 404, status: "Not Found" })
 )
