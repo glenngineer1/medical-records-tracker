@@ -120,14 +120,11 @@ app.post('/api/visits', (req, res, err) => {
   Visit
     .create(newVisitObj)
     .then(response => {
-      console.log('NVO', newVisitObj)
-      console.log('response', response)
       Register.findOneAndUpdate({ email: newVisitObj.userID }, { $push: {"visits": response}})
       .then((data) => {
-        console.log('data', data)
+        res.json({ data })
       })
       .catch(err)
-      // res.json(response)
     })
     .catch(err)
 })

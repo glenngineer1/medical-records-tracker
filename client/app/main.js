@@ -126,7 +126,7 @@ angular
         $scope.title = title
       )
   })
-  .controller('NewVisitCtrl', function ($scope, $http, $rootScope) {
+  .controller('NewVisitCtrl', function ($scope, $http, $rootScope, $location) {
     $scope.visits = []
     $scope.sendNewVisit = () => {
       const visit = {
@@ -161,7 +161,12 @@ angular
 
       $http
         .post('/api/visits', visit)
-        .then(() => $scope.visits.push(visit))
+        .then((visit) => {
+          if (visit) {
+            $scope.visits.push(visit)
+            $location.path('/previousvisit')
+          }
+        })
         .catch(console.error)
     }
 
@@ -207,7 +212,6 @@ angular
         $scope.visit = response.data.visit
       })
     $scope.modify = () => {
-      console.log('S.P', $scope.phone)
       let visit = {
         physicianName: $scope.physicianName,
         type: $scope.type,
@@ -238,7 +242,6 @@ angular
         userID: $rootScope.userID,
         id: $routeParams.id,
       }
-      console.log('visit', visit)
       $http
         .post('/api/updatevisit', visit)
         .then((response) => {
