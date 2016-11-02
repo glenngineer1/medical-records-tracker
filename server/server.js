@@ -152,6 +152,16 @@ app.post('/api/getvisits', (req, res, err) => {
     .then(response => {
       res.json({ visits: response })
     })
+    .catch(err)
+})
+
+app.post('/api/getindividualvisit', (req, res, err) => {
+  Visit
+    .findOne({ _id: req.body.id })
+    .then(response => {
+      res.json({ visit: response })
+    })
+    .catch(err)
 })
 
 app.use('/api', (req, res) =>

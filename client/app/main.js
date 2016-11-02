@@ -24,7 +24,7 @@ angular
         controller: 'PreviousVisitCtrl',
         templateUrl: 'partials/previousVisit.html',
       })
-      .when('/individualvisit', {
+      .when('/previousvisit/:id', {
         controller: 'IndividualVisitCtrl',
         templateUrl: 'partials/individualVisit.html',
       })
@@ -196,21 +196,18 @@ angular
       })
   })
   .controller('IndividualVisitCtrl', function ($scope, $http, $routeParams, $rootScope) {
+    $scope.registers = $rootScope.userID
     $http
       .get('/api/title')
-      .then(({ data: { title }}) =>
+      .then(({ data: { title }}) => {
         $scope.title = title
-      )
+        console.log('RP', $routeParams)
+      })
     $http
-      .get('/api/visits')
-      .then(({ data: { visits }}) =>
-        $scope.visits = visits
-      )
-    $http
-      .get('/api/registers')
-      .then(({ data: { registers }}) => {
-        $scope.registers = $rootScope.userID
-        console.log($rootScope)
+      .post('/api/getindividualvisit', { id: $routeParams.id })
+      .then(response => {
+        $scope.visit = response.data.visit
+        console.log('SV', $scope.visit)
       })
   })
 
