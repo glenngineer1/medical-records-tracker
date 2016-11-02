@@ -24,7 +24,7 @@ angular
         controller: 'PreviousVisitCtrl',
         templateUrl: 'partials/previousVisit.html',
       })
-      .when('/individualvisit', {
+      .when('/previousvisit/:id', {
         controller: 'IndividualVisitCtrl',
         templateUrl: 'partials/individualVisit.html',
       })

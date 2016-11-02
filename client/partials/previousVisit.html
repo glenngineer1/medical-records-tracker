@@ -7,6 +7,6 @@
 
 <ul>
   <li ng-repeat="visit in visits">
-    <a>Dr.: {{visit.physicianName}}: Date of Visit: {{visit.type}}</a>
+    <a ng-href="#/previousvisit/{{visit._id}}">Dr.: {{visit.physicianName}}: Date of Visit: {{visit.type}}</a>
   </li>
 </ul>
