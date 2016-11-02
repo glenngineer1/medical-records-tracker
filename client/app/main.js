@@ -36,6 +36,14 @@ angular
         $scope.title = title
       )
   })
+  .controller('navController', function ($scope, $rootScope, $location) {
+    $scope.user = $rootScope.userID
+    $scope.logout = () => {
+      $rootScope.userID = null
+      $location.path('/')
+    }
+  })
+
   .controller('LoginCtrl', function ($scope, $http, $location, $rootScope) {
 
     $scope.loginUser = () => {
@@ -195,7 +203,7 @@ angular
         console.log($rootScope)
       })
   })
-  .controller('IndividualVisitCtrl', function ($scope, $http, $routeParams, $rootScope) {
+  .controller('IndividualVisitCtrl', function ($scope, $http, $routeParams, $rootScope, $location) {
     $scope.registers = $rootScope.userID
     $http
       .get('/api/title')
@@ -242,8 +250,22 @@ angular
       }
       $http
         .post('/api/updatevisit', visit)
-        .then((response) => console.log('Updatevisit', response))
+        .then((response) => {
+          if (response.data.updatedIndividualVisit) {
+            $location.path('/previousvisit')
+          }
+        })
         .catch(console.error)
+    }
+    $scope.delete = () => {
+      $http
+        .post('/api/deletevisit', { id: $routeParams.id })
+        .then(response => {
+          if (response.data.deleted) {
+            $location.path('/previousvisit')
+          }
+      })
+      .catch(console.error)
     }
   })
 
