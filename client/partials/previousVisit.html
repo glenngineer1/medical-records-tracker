@@ -5,8 +5,20 @@
 
 <div ng-include="'partials/navBar.html'"></div>
 
-<ul>
-  <li ng-repeat="visit in visits">
-    <a ng-href="#/previousvisit/{{visit._id}}">Dr.: {{visit.physicianName}}: Date of Visit: {{visit.date}}</a>
-  </li>
-</ul>
+<div class="doctorLabel">Name of Doctor</div>
+<div class="dayOfVisitLabel">Date of Visit</div>
+<p></p>
+<div class="doctor">
+  <ul class="doctor">
+    <li ng-repeat="visit in visits">
+      <a ng-href="#/previousvisit/{{visit._id}}">{{visit.physicianName}}</a>
+    </li>
+  </ul>
+</div>
+<div class="dayOfVisit">
+  <ul class="dayOfVisit">
+    <li ng-repeat="visit in visits">
+      <a ng-href="#/previousvisit/{{visit._id}}">{{visit.date}}</a>
+    </li>
+  </ul>
+</div>
