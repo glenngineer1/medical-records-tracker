@@ -22,14 +22,19 @@
   BP: <input type="number" ng-model="systolic" placeholder="Systolic">
   <input type="number" ng-model="diastolic" placeholder="Diastolic">
   <hr>
+  <p>Reason For Visit:</p>
+
   <textarea ng-model="reasonForVisit" placeholder="Reason For Visit" cols="100" rows="5"></textarea>
   <hr>
   Date of Visit: <input type="date" ng-model="date" placeholder="Date of Visit">
   <hr>
+  <p>Diagnosis:</p>
   <textarea ng-model="diagnosis" placeholder="Diagnosis" cols="100" rows="3"></textarea>
   <hr>
+  <p>Solution: </p>
   <textarea ng-model="solution" placeholder="Solution" cols="100" rows="3"></textarea>
   <hr>
+  <p>Follow Up:</p>
   <textarea ng-model="followUp" placeholder="Follow Up" cols="100" rows="3"></textarea>
   <hr>
   Bloodwork Done: <select ng-model="bloodwork">
@@ -37,13 +42,17 @@
     <option value="No">No</option>
   </select>
   <hr>
+  <p>Medications Prescribed: </p>
   <textarea ng-model="medicationsPrescribed" placeholder="Medications Prescribed" cols="100" rows="3"></textarea>
   <hr>
+  <p>Side Effects:</p>
   <textarea ng-model="sideEffects" placeholder="Side Effects" cols="100" rows="3"></textarea>
   <hr>
+  <p>Allergies:</p>
   <textarea ng-model="allergies" placeholder="Allergies to New Meds" cols="100" rows="3"></textarea>
   <hr>
+  <p>After Care:</p>
   <textarea ng-model="afterCare" placeholder="After Care" cols="100" rows="3"></textarea>
   <hr>
-  <input type="submit" />
+  <input class="btn btn-primary" type="submit" />
 </form>
